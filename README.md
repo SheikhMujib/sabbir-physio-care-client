@@ -3,9 +3,9 @@
 ## Features and Functionalities
 
 This project has following features and functionalities-
--React
--React Router
--Firebase
--Nodejs
--Express
--Mongodb
+- React
+- React Router
+- Firebase
+- Nodejs
+- Express
+- Mongodb
