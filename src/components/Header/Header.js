@@ -10,6 +10,11 @@ const Header = () => {
           Home
         </Link>
       </li>
+      <li>
+        <Link to="/login" className="font-semibold">
+          Login
+        </Link>
+      </li>
       {}
     </>
   );
