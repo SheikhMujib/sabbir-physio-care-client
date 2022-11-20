@@ -1,10 +1,14 @@
+import { GoogleAuthProvider } from "firebase/auth";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import img from "../../assets/login.png";
+import googleLogo from "../../assets/google.png";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
-const {logIn} = useContext(AuthContext);
+  const { logIn, googleLogin } = useContext(AuthContext);
+
+  const googleProvider = new GoogleAuthProvider();
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -13,20 +17,40 @@ const {logIn} = useContext(AuthContext);
     const password = form.password.value;
 
     logIn(email, password)
-    .then(result => {
-      const user = result.user;
-      console.log(user);
-    })
-    .catch(error=>console.error(error))
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.error(error));
+  };
+
+  const handleGoogleLogin = () => {
+    googleLogin(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.error(error));
   };
   return (
     <div className="hero w-full my-20">
       <div className="hero-content grid gap-20 md:grid-cols-2 flex-col lg:flex-row">
-        <div className="text-center lg:text-left">
+        <div className="text-center">
           <img src={img} alt="" />
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 py-20">
           <h1 className="text-5xl text-center font-bold">Login</h1>
+          <button
+            onClick={handleGoogleLogin}
+            className="btn btn-ghost mx-7 mt-5"
+          >
+            <img
+              src={googleLogo}
+              alt="Google Logo"
+              className="w-7 mr-3 rounded-full"
+            />
+            Login with Google
+          </button>
           <form onSubmit={handleLogin} className="card-body">
             <div className="form-control">
               <label className="label">

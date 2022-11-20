@@ -1,32 +1,58 @@
-import React, { useContext } from 'react';
+import { GoogleAuthProvider } from "firebase/auth";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import img from "../../assets/login.png";
-import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import googleLogo from "../../assets/google.png";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Signup = () => {
-  const {createUser} = useContext(AuthContext)
+  const { createUser, googleLogin } = useContext(AuthContext);
 
-    const handleSignup = (event) => {
-        event.preventDefault();
-        const form = event.target;
-        const email = form.email.value;
-        const password = form.password.value;
+  const googleProvider = new GoogleAuthProvider();
 
-        createUser(email, password)
-        .then(result =>{
-          const user = result.user;
-          console.log(user);
-        })
-        .catch(error =>console.error(error))
-      };
-    return (
-        <div className="hero w-full my-20">
+  const handleGoogleLogin = () => {
+    googleLogin(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.error(error));
+  };
+
+  const handleSignup = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.error(error));
+  };
+
+  return (
+    <div className="hero w-full my-20">
       <div className="hero-content grid gap-20 md:grid-cols-2 flex-col lg:flex-row">
         <div className="text-center lg:text-left">
           <img src={img} alt="" />
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 py-20">
           <h1 className="text-5xl text-center font-bold">Sign Up</h1>
+          <button
+            onClick={handleGoogleLogin}
+            className="btn btn-ghost mx-7 mt-5"
+          >
+            <img
+              src={googleLogo}
+              alt="Google Logo"
+              className="w-7 mr-3 rounded-full"
+            />
+            Signup with Google
+          </button>
+
           <form onSubmit={handleSignup} className="card-body">
             <div className="form-control">
               <label className="label">
@@ -74,7 +100,7 @@ const Signup = () => {
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default Signup;
