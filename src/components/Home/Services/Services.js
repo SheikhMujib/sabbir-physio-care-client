@@ -1,13 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import ServiceCard from "./ServiceCard";
 
 const Services = () => {
   const [services, setServices] = useState([]);
+  const {loading} = useContext(AuthContext);
+
   useEffect(()=>{
     fetch('http://localhost:5000/services')
     .then(res => res.json())
     .then(data => setServices(data))
   }, [])
+
+  if(loading){
+    return <div className="grid place-content-center mb-11">
+      <button className="btn loading">loading</button>
+    </div>
+  };
+
   return (
     <div className="my-7">
       <div className="text-center mb-5">

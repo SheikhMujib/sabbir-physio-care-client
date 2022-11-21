@@ -6,9 +6,15 @@ import googleLogo from "../../assets/google.png";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
-  const { logIn, googleLogin } = useContext(AuthContext);
+  const { logIn, googleLogin, loading } = useContext(AuthContext);
 
   const googleProvider = new GoogleAuthProvider();
+
+  if(loading){
+    return <div className="grid place-content-center mb-11">
+      <button className="btn loading">loading</button>
+    </div>
+  };
 
   const handleLogin = (event) => {
     event.preventDefault();
