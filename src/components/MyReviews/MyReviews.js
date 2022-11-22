@@ -46,7 +46,7 @@ const MyReviews = () => {
         </th>
         <th>Service Name</th>
         <th>Review</th>
-        <th>Favorite Color</th>
+        
         <th></th>
       </tr>
     </thead>
