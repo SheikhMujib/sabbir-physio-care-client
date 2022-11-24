@@ -4,17 +4,24 @@ import logo from "../../assets/logo.png";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
-  const {user} = useContext(AuthContext)
+  const {user, logOut} = useContext(AuthContext);
+
+  const handleSignout = ()=>{
+    logOut()
+    .then(()=>{})
+    .catch(error=> console.error(error))
+  }
+
   const menuItems = (
     <>
       <li>
         <Link to="/" className="font-semibold">
-          Home
+          HOME
         </Link>
       </li>
       <li>
         <Link to="/services" className="font-semibold">
-          Services
+          SERVICES
         </Link>
       </li>
       {
@@ -22,14 +29,17 @@ const Header = () => {
         <>
         <li>
         <Link to="/myreviews" className="font-semibold">
-          My Reviews
+          MY REVIEWS
         </Link>
-      </li>
+        </li>
+        <li>
+        <button onClick={handleSignout} className="btn btn-ghost">SIGNOUT</button>
+        </li>
         </>
         :
         <li>
         <Link to="/login" className="font-semibold">
-          Login
+          LOGIN
         </Link>
       </li>
       }
