@@ -4,19 +4,21 @@ import ServiceCard from "./ServiceCard";
 
 const Services = () => {
   const [services, setServices] = useState([]);
-  const {loading} = useContext(AuthContext);
+  const { loading } = useContext(AuthContext);
 
-  useEffect(()=>{
-    fetch('http://localhost:5000/services')
-    .then(res => res.json())
-    .then(data => setServices(data))
-  }, [])
+  useEffect(() => {
+    fetch("https://sabbir-physio-care-server.vercel.app/services")
+      .then((res) => res.json())
+      .then((data) => setServices(data));
+  }, []);
 
-  if(loading){
-    return <div className="grid place-content-center mb-11">
-      <button className="btn loading">loading</button>
-    </div>
-  };
+  if (loading) {
+    return (
+      <div className="grid place-content-center mb-11">
+        <button className="btn loading">loading</button>
+      </div>
+    );
+  }
 
   return (
     <div className="my-7">
@@ -32,12 +34,9 @@ const Services = () => {
         </p>
       </div>
       <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {
-            services.map(service => <ServiceCard
-            key={service._id}
-            service={service}
-            ></ServiceCard>)
-        }
+        {services.map((service) => (
+          <ServiceCard key={service._id} service={service}></ServiceCard>
+        ))}
       </div>
     </div>
   );

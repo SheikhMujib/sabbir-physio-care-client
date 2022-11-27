@@ -38,26 +38,35 @@ const router = createBrowserRouter([
       {
         path: "/services/:id",
         element: <ServiceDetails></ServiceDetails>,
-        loader: ({params})=> fetch(`http://localhost:5000/services/${params.id}`),
+        loader: ({ params }) =>
+          fetch(
+            `https://sabbir-physio-care-server.vercel.app/services/${params.id}`
+          ),
       },
       {
         path: "/reviews/:id",
         element: <AllReviews></AllReviews>,
-        loader: ({params})=> fetch(`http://localhost:5000/reviews/${params.id}`)
+        loader: ({ params }) =>
+          fetch(
+            `https://sabbir-physio-care-server.vercel.app/reviews/${params.id}`
+          ),
       },
       {
         path: "/myreviews",
-        element: <MyReviews></MyReviews>
+        element: <MyReviews></MyReviews>,
       },
       {
         path: "/updatereview/:id",
         element: <UpdateReview></UpdateReview>,
-        loader: ({params})=> fetch(`http://localhost:5000/reviews/${params.id}`)
+        loader: ({ params }) =>
+          fetch(
+            `https://sabbir-physio-care-server.vercel.app/reviews/${params.id}`
+          ),
       },
       {
         path: "/blogs",
-        element: <Blogs></Blogs>
-      }
+        element: <Blogs></Blogs>,
+      },
     ],
   },
 ]);

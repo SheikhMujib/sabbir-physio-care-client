@@ -3,14 +3,15 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const ReviewRow = ({ myReview, handleDelete }) => {
-  const { _id, serviceName, review, customer, email, service, photo } = myReview;
+  const { _id, serviceName, review, customer, email, service, photo } =
+    myReview;
 
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const [serviceReview, setServiceReview] = useState({});
 
   useEffect(() => {
-    fetch(`http://localhost:5000/services/${service}`)
+    fetch(`https://sabbir-physio-care-server.vercel.app/services/${service}`)
       .then((res) => res.json())
       .then((data) => setServiceReview(data));
   }, [service]);
@@ -45,12 +46,16 @@ const ReviewRow = ({ myReview, handleDelete }) => {
         {review}
         <br />
         <div className="flex items-center">
-        <img src={user?.photoURL || photo} className="w-16 rounded-full" alt="p" />
-        <span className="badge badge-ghost badge-sm">
-          Reviewed by {user?.displayName || customer}
-        </span>
-        <br />
-        <span className="badge badge-ghost badge-sm">email: {email}</span>
+          <img
+            src={user?.photoURL || photo}
+            className="w-16 rounded-full"
+            alt="p"
+          />
+          <span className="badge badge-ghost badge-sm">
+            Reviewed by {user?.displayName || customer}
+          </span>
+          <br />
+          <span className="badge badge-ghost badge-sm">email: {email}</span>
         </div>
       </td>
 

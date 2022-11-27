@@ -6,32 +6,35 @@ const UpdateReview = () => {
   const storedReview = useLoaderData();
   const [review, setReview] = useState(storedReview);
 
-  const handleUpdateReview = event =>{
+  const handleUpdateReview = (event) => {
     event.preventDefault();
-    console.log(review)
+    console.log(review);
 
-    fetch(`http://localhost:5000/reviews/${storedReview._id}`, {
-      method: 'PUT',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(review)
-    })
-    .then(res => res.json())
-    .then(data => {
-      if(data.modifiedCount > 0){
-        toast('Review Updated Successfully');
+    fetch(
+      `https://sabbir-physio-care-server.vercel.app/reviews/${storedReview._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(review),
       }
-    })
-  }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          toast("Review Updated Successfully");
+        }
+      });
+  };
 
-  const handleInputChange = event =>{
+  const handleInputChange = (event) => {
     const field = event.target.name;
     const value = event.target.value;
-    const newReview = {...review}
+    const newReview = { ...review };
     newReview[field] = value;
-    setReview(newReview)
-  }
+    setReview(newReview);
+  };
 
   return (
     <div className="hero min-h-screen bg-base-200">
@@ -42,9 +45,19 @@ const UpdateReview = () => {
           </h1>
           <form onSubmit={handleUpdateReview}>
             <p className="py-6">
-            <input onChange={handleInputChange} type="text" name="review" defaultValue={storedReview.review} className="input input-ghost w-full" />
+              <input
+                onChange={handleInputChange}
+                type="text"
+                name="review"
+                defaultValue={storedReview.review}
+                className="input input-ghost w-full"
+              />
             </p>
-            <input type="submit" value="Update Review" className="btn btn-primary" />
+            <input
+              type="submit"
+              value="Update Review"
+              className="btn btn-primary"
+            />
           </form>
         </div>
       </div>
