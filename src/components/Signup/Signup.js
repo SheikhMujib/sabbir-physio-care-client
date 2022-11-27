@@ -69,6 +69,19 @@ const Signup = () => {
                 name="name"
                 placeholder="your name"
                 className="input input-bordered"
+                required
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">PhotoUrl</span>
+              </label>
+              <input
+                type="text"
+                name="photoURL"
+                placeholder="Insert your photoURL"
+                className="input input-bordered"
+                required
               />
             </div>
             <div className="form-control">
@@ -80,6 +93,7 @@ const Signup = () => {
                 name="email"
                 placeholder="email"
                 className="input input-bordered"
+                required
               />
             </div>
             <div className="form-control">

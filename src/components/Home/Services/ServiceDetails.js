@@ -1,15 +1,21 @@
 import React, { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import AllReviews from "../../AllReviews/AllReviews";
+
 
 const ServiceDetails = () => {
   const {_id, title, img, description } = useLoaderData();
+
   const { user } = useContext(AuthContext);
+
+  
 
   const handleReview = (event) => {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
+    const photo = user?.photoURL || form.photo.value;
     const email = user?.email || 'unregistered';
     const review = form.review.value;
 
@@ -18,6 +24,7 @@ const ServiceDetails = () => {
       serviceName: title,
       customer: name,
       email,
+      photo,
       review
     }
 
@@ -54,7 +61,13 @@ const ServiceDetails = () => {
       </div>
       <div className="divider"></div>
       <div className="grid card bg-base-300 rounded-box place-items-center">
-        <form onSubmit={handleReview}>
+        <AllReviews></AllReviews>
+      </div>
+      <div className="divider"></div>
+      <div className="grid card bg-base-300 rounded-box place-items-center">
+        {
+          user?.email ?
+          <form onSubmit={handleReview}>
           <p className="text-xl my-3">
             <label htmlFor="review">PLEASE, WRITE YOUR REVIEW ON {title}</label>
           </p>
@@ -72,6 +85,13 @@ const ServiceDetails = () => {
             required
           />
           <input
+            name="photo"
+            type="text"
+            placeholder="Insert your photo url"
+            className="input input-bordered w-full mb-3"
+            required
+          />
+          <input
             name="email"
             type="email"
             className="input input-ghost w-full"
@@ -82,6 +102,16 @@ const ServiceDetails = () => {
             Share Review
           </button>
         </form>
+          :
+          <>
+          <h3 className="text-xl text-center my-5">
+          Please login to add a review
+          </h3>
+          <Link className="font-bold text-orange-600" to="/login">
+              <button className="btn btn-primary my-3">Log In</button>
+          </Link>
+          </>
+        }
       </div>
     </div>
   );

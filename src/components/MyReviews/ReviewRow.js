@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const ReviewRow = ({ myReview, handleDelete }) => {
-  const { _id, serviceName, review, customer, email, service } = myReview;
+  const { _id, serviceName, review, customer, email, service, photo } = myReview;
+
+  const {user} = useContext(AuthContext);
+
   const [serviceReview, setServiceReview] = useState({});
 
   useEffect(() => {
@@ -34,18 +38,20 @@ const ReviewRow = ({ myReview, handleDelete }) => {
           </div>
           <div>
             <div className="font-bold">{serviceName}</div>
-            <div className="text-sm opacity-50">United States</div>
           </div>
         </div>
       </td>
       <td>
         {review}
         <br />
+        <div className="flex items-center">
+        <img src={user?.photoURL || photo} className="w-16 rounded-full" alt="p" />
         <span className="badge badge-ghost badge-sm">
-          Reviewed by {customer}
+          Reviewed by {user?.displayName || customer}
         </span>
         <br />
         <span className="badge badge-ghost badge-sm">email: {email}</span>
+        </div>
       </td>
 
       <th>
