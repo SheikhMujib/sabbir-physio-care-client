@@ -10,7 +10,7 @@ const Booking = () => {
   return (
     <div className="container my-7 bg-base-300 p-5 text-center text-xl">
       <h2 className="text-5xl font-semibold mb-3">Appoinment</h2>
-      <h5 className="text-2xl my-3">Please, select a date and time for the appoinment with Dr. Sabbir Asraful</h5>
+      <h5 className="text-2xl my-3">Please, select a date and time for your appoinment with Dr. Sabbir Asraful</h5>
       <div className="text-xl">
         <Calendar
           onChange={setDate}
