@@ -86,7 +86,9 @@ const Header = () => {
         <ul className="menu menu-horizontal p-0">{menuItems}</ul>
       </div>
       <div className="navbar-end">
+        <Link to="/booking">
         <button className="btn btn-outline btn-primary">Appoinment</button>
+        </Link>
       </div>
     </div>
   );

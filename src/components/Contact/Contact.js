@@ -4,7 +4,7 @@ import { SlSocialFacebook } from "react-icons/sl";
 
 const Contact = () => {
   return (
-    <div className="text-center my-7 text-xl">
+    <div className="text-center my-11 text-xl">
       <h2 className="text-5xl font-semibold mb-3">Contact</h2>
       <p>
         Sabbir Physio Care is the best quality physiotherapy service provider in

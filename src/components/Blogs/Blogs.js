@@ -1,6 +1,8 @@
 import React from "react";
+import useTitle from "../../hooks/useTitle";
 
 const Blogs = () => {
+  useTitle('Blogs')
   return (
     <div className="mb-5">
       <div className="flex flex-col w-full">

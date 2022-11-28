@@ -7,17 +7,17 @@ const Footer = () => {
       <footer className="footer p-10 bg-base-200 text-base-content">
         <div>
           <span className="footer-title">Services</span>
-          <a href="/" className="link link-hover">Branding</a>
-          <a href="/" className="link link-hover">Design</a>
-          <a href="/" className="link link-hover">Marketing</a>
-          <a href="/" className="link link-hover">Advertisement</a>
+          <a href="/" className="link link-hover">STROCK MANAGEMENT</a>
+          <a href="/" className="link link-hover">AUTISTIC CHILD MANAGEMENT</a>
+          <a href="/" className="link link-hover">REHABILITATION</a>
+          <a href="/" className="link link-hover">WEIGHT REDUCING PROGRAMME</a>
         </div>
         <div>
           <span className="footer-title">Company</span>
-          <a href="/" className="link link-hover">About us</a>
+          <a href="/" className="link link-hover">About Me</a>
           <a href="/" className="link link-hover">Contact</a>
-          <a href="/" className="link link-hover">Jobs</a>
-          <a href="/" className="link link-hover">Press kit</a>
+          <a href="/" className="link link-hover">Appoinment</a>
+          <a href="/" className="link link-hover">Social Links</a>
         </div>
         <div>
           <span className="footer-title">Legal</span>
